@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
      public void onBackPressed() {
         if(System.currentTimeMillis() > backKeyPressedTime + 2000) {
-            backKeyPressedTime = System.currentTimeMillis()
-            Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 한번더 누르면 종료", Toast.LENGTH_SHORT).show()
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "뒤로가기 버튼을 한번더 누르면 종료", Toast.LENGTH_SHORT).show();
         } else {
             super.onBackPressed();
             auth.signOut();
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCreate(Bundle savedInstanceState) {
-        auth = FirebaseAuth.getInstance();
+
+        ///auth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
