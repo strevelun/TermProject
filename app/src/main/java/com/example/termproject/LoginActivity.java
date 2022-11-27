@@ -85,6 +85,18 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
 
+                            databaseReference.child("Users").child(uid).child("Badge").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    PrefManager.setString(getApplicationContext(), "Badge", snapshot.getValue(String.class));
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                             finish();

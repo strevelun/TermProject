@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class CommunityRecyclerAdapter extends RecyclerView.Adapter<CommunityAllViewHolder> {
 
-    private ArrayList<ListItem> list = new ArrayList<>();
+    private ArrayList<Post> list = new ArrayList<>();
 
     @NonNull
     @Override
@@ -33,13 +33,14 @@ public class CommunityRecyclerAdapter extends RecyclerView.Adapter<CommunityAllV
         String title = list.get(position).title;
         String content = list.get(position).content;
         String writer = list.get(position).writer;
+        String uri = list.get(position).uri;
 
         holder.tv_title.setText(title);
-        // holder.tv_title.setText(title);
-        // holder.tv_title.setText(title);
+        holder.tv_content.setText(content);
+       // holder.tv_univ.setText()
     }
 
-    public void addItem(ListItem item) {
+    public void addItem(Post item) {
         list.add(item);
     }
 

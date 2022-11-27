@@ -82,6 +82,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
                                 }
                             });
+
+                            String n = "0";
+                            databaseReference.child("Users").child(uid).child("Badge").setValue(n);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "회원가입 실패 : " + task.getException(), Toast.LENGTH_SHORT).show();
