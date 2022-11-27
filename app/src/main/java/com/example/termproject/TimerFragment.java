@@ -30,7 +30,7 @@ public class TimerFragment extends Fragment {
 
         Button startBtn = view.findViewById(R.id.start_btn);
         Button resetBtn = view.findViewById(R.id.reset_btn);
-        TextView tv_score = view.findViewById(R.id.tv_score);
+        //TextView tv_score = view.findViewById(R.id.tv_score);
 
         //시작
         startBtn.setOnClickListener(new View.OnClickListener() {

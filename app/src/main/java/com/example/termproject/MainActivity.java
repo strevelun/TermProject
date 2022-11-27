@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.termproject.community.CommunityFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
 
-        ///auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -75,12 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDestroy() {
         super.onDestroy();
-
-        // 앱을 종료할 때는 길찾기에 등록한 정보를 초기화(0과 공백문자로 세팅) 함
-//        MyApplication.prefs.setString(getString(R.string.name), "")
-//        MyApplication.prefs.putFloat(getString(R.string.myLatitude), 0.0f)
-//        MyApplication.prefs.putFloat(getString(R.string.myLongitude), 0.0f)
-//        MyApplication.prefs.putFloat(getString(R.string.destinationLatitude), 0.0f)
-//        MyApplication.prefs.putFloat(getString(R.string.destinationLongitude), 0.0f)
+        PrefManager.clear(getApplicationContext());
     }
 }
