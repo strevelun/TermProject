@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termproject.MainActivity;
 import com.example.termproject.R;
 
 public class CommunityAllViewHolder  extends RecyclerView.ViewHolder {
@@ -26,5 +29,14 @@ public class CommunityAllViewHolder  extends RecyclerView.ViewHolder {
         tv_content = itemView.findViewById(R.id.tv_content);
         tv_univ = itemView.findViewById(R.id.tv_univ);
         iv_badge = itemView.findViewById(R.id.iv_badge);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "fdsa : " + getAdapterPosition(), Toast.LENGTH_LONG).show();
+
+               // context.startActivity()
+            }
+        });
     }
 }

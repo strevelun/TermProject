@@ -4,10 +4,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
-public class CommunityPageAdapter extends FragmentPagerAdapter {
+public class CommunityPageAdapter extends FragmentStatePagerAdapter {
     private ArrayList<Fragment> items;
     private ArrayList<String> titles = new ArrayList<>();
 

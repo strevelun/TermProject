@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.termproject.PrefManager;
 import com.example.termproject.R;
@@ -33,8 +34,27 @@ public class CommunityFragment extends Fragment {
         vp.setAdapter(communityPageAdapter);
         communityPageAdapter.setTitle(PrefManager.getString(getContext(),"Univ") + " 재학생");
 
-        TabLayout tab = view.findViewById(R.id.tab);
-        tab.setupWithViewPager(vp);
+        TabLayout tabLayout = view.findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(vp);
+
+        vp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                vp.setCurrentItem(tab.getPosition());
+                Toast.makeText(requireContext(), "" + tab.getPosition(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

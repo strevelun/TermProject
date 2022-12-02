@@ -5,13 +5,15 @@ import android.net.Uri;
 public class Post {
 
 
-    String writer;
-    String title;
-    String content;
-    String uri;
-    String univ;
-    String badge; // contribution
+    String writer = "";
+    String title = "";
+    String content = "";
+    String uri = "";
+    String univ = "";
+    String badge = ""; // contribution
 
+
+    public Post() {}
 
     public Post(String writer, String title, String content, String uri, String univ, String badge) {
         this.writer = writer;

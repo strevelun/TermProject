@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 public class CommunityAllStudents extends Fragment {
 
@@ -44,21 +47,28 @@ public class CommunityAllStudents extends Fragment {
 
         // 데이터 삽입
 
-        ValueEventListener listener = new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    String key = postSnapshot.getKey();
-                    Post post = postSnapshot.getValue(Post.class);
-                    adapter.addItem(post);
+                try {
+                    adapter.clear();
+                    for (DataSnapshot postSnapshot : snapshot.child("Post").getChildren()) {
+                        Post post = postSnapshot.getValue(Post.class);
+                        //Log.d("Fdsa", "onDataChange: " + post);
+                        adapter.addItem(post);
+                    }
+                    adapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        };
+        });
 
 
 
@@ -68,5 +78,12 @@ public class CommunityAllStudents extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        adapter.notifyDataSetChanged();
     }
 }

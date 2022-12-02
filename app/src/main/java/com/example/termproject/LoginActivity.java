@@ -69,13 +69,13 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_LONG).show();
                             FirebaseUser currentUser = auth.getCurrentUser();
                             String uid = currentUser.getUid();
                             databaseReference.child("Users").child(uid).child("Univ").addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    Toast.makeText(getApplicationContext(), snapshot.getValue(String.class), Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), snapshot.getValue(String.class), Toast.LENGTH_LONG).show();
                                     PrefManager.setString(getApplicationContext(), "Univ", snapshot.getValue(String.class));
                                 }
 

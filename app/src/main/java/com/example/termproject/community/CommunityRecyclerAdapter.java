@@ -1,6 +1,8 @@
 package com.example.termproject.community;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +36,13 @@ public class CommunityRecyclerAdapter extends RecyclerView.Adapter<CommunityAllV
         String content = list.get(position).content;
         String writer = list.get(position).writer;
         String uri = list.get(position).uri;
+        String univ = list.get(position).univ;
 
         holder.tv_title.setText(title);
         holder.tv_content.setText(content);
+        holder.iv_image.setImageURI(Uri.parse(uri));
+        holder.tv_univ.setText(univ + " 학생");
+        holder.iv_badge.setBackgroundColor(Color.GRAY);
        // holder.tv_univ.setText()
     }
 
@@ -48,4 +54,6 @@ public class CommunityRecyclerAdapter extends RecyclerView.Adapter<CommunityAllV
     public int getItemCount() {
         return list.size();
     }
+
+    public void clear() { list.clear();}
 }

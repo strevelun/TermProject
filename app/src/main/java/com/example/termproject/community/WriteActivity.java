@@ -74,11 +74,15 @@ public class WriteActivity extends AppCompatActivity {
                 FirebaseUser currentUser = auth.getCurrentUser();
                 String uid = currentUser.getUid();
 
-                Post post = new Post(uid, title, content, uri.toString(),
+                String uriString = "";
+                if(uri != null)
+                    uriString = uri.toString();
+
+                Post post = new Post(uid, title, content, uriString,
                         PrefManager.getString(getApplicationContext(), "Univ"),
                         PrefManager.getString(getApplicationContext(), "Badge")); // 처음 로그인할때 pref에 저장한 후 badge 입력
 
-                databaseReference.child("Posts").push().setValue(post);
+                databaseReference.child("Post").push().setValue(post);
 
                 finish();
             }
