@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -95,19 +96,19 @@ public class MainActivity extends AppCompatActivity {
 
         if(tag == "timerFragment"){
             if(timer != null){
-                ft.show(timer);
+                ft.show(timer).setMaxLifecycle(fragment, Lifecycle.State.RESUMED);
             }
         }
 
         if(tag == "rankingFragment"){
             if(ranking != null){
-                ft.show(ranking);
+                ft.show(ranking).setMaxLifecycle(fragment, Lifecycle.State.RESUMED);
             }
         }
 
         if(tag == "communityFragment"){
             if(community != null){
-                ft.show(community);
+                ft.show(community).setMaxLifecycle(fragment, Lifecycle.State.RESUMED);
             }
         }
 

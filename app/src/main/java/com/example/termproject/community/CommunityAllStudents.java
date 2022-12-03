@@ -45,8 +45,6 @@ public class CommunityAllStudents extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         adapter = new CommunityRecyclerAdapter();
 
-        // 데이터 삽입
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -54,7 +52,6 @@ public class CommunityAllStudents extends Fragment {
                     adapter.clear();
                     for (DataSnapshot postSnapshot : snapshot.child("Post").getChildren()) {
                         Post post = postSnapshot.getValue(Post.class);
-                        //Log.d("Fdsa", "onDataChange: " + post);
                         adapter.addItem(post);
                     }
                     adapter.notifyDataSetChanged();
@@ -78,12 +75,5 @@ public class CommunityAllStudents extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        adapter.notifyDataSetChanged();
     }
 }

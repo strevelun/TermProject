@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         spinner = findViewById(R.id.spinner);
-        TextView tv_email = findViewById(R.id.tv_email);
-        TextView tv_password = findViewById(R.id.tv_password);
+        EditText et_email = findViewById(R.id.et_email);
+        EditText et_password = findViewById(R.id.et_password);
+        EditText et_name = findViewById(R.id.et_name);
         auth = FirebaseAuth.getInstance();
         databaseReference = database.getReference();
 
@@ -51,8 +53,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = tv_email.getText().toString();
-                String password =tv_password.getText().toString();
+                String email = et_email.getText().toString();
+                String password = et_password.getText().toString();
+                String name = et_name.getText().toString();
+
+                if(name.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(email.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "이메일을 입력해주세요!", Toast.LENGTH_SHORT).show();
@@ -85,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             String n = "0";
                             databaseReference.child("Users").child(uid).child("Badge").setValue(n);
+                            databaseReference.child("Users").child(uid).child("Name").setValue(name);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "회원가입 실패 : " + task.getException(), Toast.LENGTH_SHORT).show();

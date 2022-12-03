@@ -30,7 +30,7 @@ public class CommunityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_community, container, false);
 
         ViewPager vp = view.findViewById(R.id.viewpager);
-        CommunityPageAdapter communityPageAdapter = new CommunityPageAdapter(getFragmentManager());
+        CommunityPageAdapter communityPageAdapter = new CommunityPageAdapter(requireActivity().getSupportFragmentManager());
         vp.setAdapter(communityPageAdapter);
         communityPageAdapter.setTitle(PrefManager.getString(getContext(),"Univ") + " 재학생");
 
@@ -38,11 +38,11 @@ public class CommunityFragment extends Fragment {
         tabLayout.setupWithViewPager(vp);
 
         vp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 vp.setCurrentItem(tab.getPosition());
-                Toast.makeText(requireContext(), "" + tab.getPosition(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

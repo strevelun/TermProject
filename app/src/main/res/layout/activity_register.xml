@@ -27,14 +27,20 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/tv_email"
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="닉네임" />
+
+        <EditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="email" />
 
 
         <EditText
-            android:id="@+id/tv_password"
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="password"

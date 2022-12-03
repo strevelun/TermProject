@@ -35,14 +35,13 @@ public class CommunityMyStudent extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_community_my_student, container, false);
 
-        Toast.makeText(requireContext(), "comm", Toast.LENGTH_SHORT).show();
-
         databaseReference = database.getReference();
         auth = FirebaseAuth.getInstance();
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_student);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         adapter = new CommunityRecyclerAdapter();
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -51,7 +50,7 @@ public class CommunityMyStudent extends Fragment {
                     adapter.clear();
                     for (DataSnapshot postSnapshot : snapshot.child("Post").getChildren()) {
                         Post post = postSnapshot.getValue(Post.class);
-                        if(post.univ != PrefManager.getString(requireContext(), "Univ"))
+                        if(post.univ.compareTo(PrefManager.getString(requireContext(), "Univ")) != 0)
                             continue;
                         adapter.addItem(post);
                     }

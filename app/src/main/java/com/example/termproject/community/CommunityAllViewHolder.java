@@ -19,7 +19,7 @@ public class CommunityAllViewHolder  extends RecyclerView.ViewHolder {
     public ImageView iv_image;
     public TextView tv_content;
     public TextView tv_univ;
-    public ImageView iv_badge;
+    public TextView tv_badge;
 
     public CommunityAllViewHolder(Context context, @NonNull View itemView) {
         super(itemView);
@@ -28,13 +28,12 @@ public class CommunityAllViewHolder  extends RecyclerView.ViewHolder {
         iv_image = itemView.findViewById(R.id.iv_image);
         tv_content = itemView.findViewById(R.id.tv_content);
         tv_univ = itemView.findViewById(R.id.tv_univ);
-        iv_badge = itemView.findViewById(R.id.iv_badge);
+        tv_badge = itemView.findViewById(R.id.tv_badge);
+
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "fdsa : " + getAdapterPosition(), Toast.LENGTH_LONG).show();
-
                // context.startActivity()
             }
         });
